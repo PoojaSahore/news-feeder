@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Main} from './components';
+import {App} from './components';
 import './index.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+const MaterialisedApp = () => (
+    <MuiThemeProvider>
+      <App />
+    </MuiThemeProvider>
+  );
+  
+
+ReactDOM.render(<MaterialisedApp />, document.getElementById('root'));
 registerServiceWorker();
