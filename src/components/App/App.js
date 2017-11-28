@@ -7,22 +7,37 @@ class App extends Component {
     constructor () {
         super()
         this.state = {
-            open : false
+            open : false,
+            title: ""
         }
     }
 
-    handleToggle = () => this.setState({open: !this.state.open});
+    // handleClick = () => {
+    //     handleToggle = () => this.setState({open: !this.state.open});
+    //     display = () => {
+    //         return (
 
+    //         )
+    //     }
+    // }
+    handleToggle = () => {
+        this.setState({open: !this.state.open});
+    }
+
+    handleNewsChange = (title) => {
+        this.setState({title})
+        console.log(this.state.title)
+    }
     render() {
         return (
             <div>
                 <AppBar
-                    title="News Feeder"
+                    title= {`News Feeder${this.state.title?": " + this.state.title:""}`}
                     iconClassNameRight="muidocs-icon-navigation-expand-more" 
                     onLeftIconButtonTouchTap={this.handleToggle}
                 />
-                <News />
-                <SideBar open={this.state.open} handleToggle={this.handleToggle} />
+                <News newsTitle={this.state.title} />
+                <SideBar open={this.state.open} handleToggle={this.handleToggle} handleNewsChange={this.handleNewsChange} />
             </div>
         )
     }

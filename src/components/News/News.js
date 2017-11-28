@@ -1,24 +1,28 @@
 import React, {Component} from 'react';
 
 class News extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            news: []
-            
+            news: [],
+            pooja: ""
+
         }
     }
-
+        // componentWillReceiveProps() {
+        //     console.log(this.props.newsTitle)
+        //     console.log("ddjcvjsdvcjn")
+        //     this.setState({pooja: this.props.newsTitle})
+        // }
     componentDidMount() {
-        fetch('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
-        .then(data => {
+        console.log(this.props.newsTitle, "did")
+        fetch('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty').then(data => {
             console.log(data)
             return data.json();
         }).then(data => {
             data.splice(10)
             data.map(x => {
-                fetch('https://hacker-news.firebaseio.com/v0/item/' + x + '.json?print=pretty')
-                .then(data => {
+                fetch('https://hacker-news.firebaseio.com/v0/item/' + x + '.json?print=pretty').then(data => {
                     return data.json()
                 }).then(data => {
                     let news = {
@@ -41,24 +45,29 @@ class News extends Component {
     }
 
     render() {
-        const a = this.state.news.map((x, index) => {
-            return (
-                <li key={index}>
-                    <div>
-                        {x.title}
-                    </div>
-                    <div>
-                        {x.story}
-                    </div>
-                    <a href={x.url}> read more </a>
-                </li>
-            )
-        })
+        const a = this
+            .state
+            .news
+            .map((x, index) => {
+                return (
+                    <li key={index}>
+                        <div>
+                            {x.title}
+                        </div>
+                        <div>
+                            {x.story}
+                        </div>
+                        <a href={x.url}>
+                            read more
+                        </a>
+                    </li>
+                )
+            })
         return (
             <div className="outer-box">
-                <h1>Hacker News</h1>
+                <h1>Hacker News{[this.props.newsTitle, this.state.pooja]}</h1>
                 <div className="inner-box">
-                   <ul>{a}</ul>
+                    <ul>{a}</ul>
                 </div>
             </div>
         )

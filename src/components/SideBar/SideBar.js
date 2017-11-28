@@ -1,37 +1,30 @@
 import React, {Component} from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-//import RaisedButton from 'material-ui/RaisedButton';
+import {details} from '../../constants'
 
 //pure component
-const SideBar = (props) => { //{open, handleToggle} destructuring of props
+const SideBar = (props) => { //{open, handleToggle} destructuring of props+
 
-//   constructor(props) {
-//     super(props);   console.log("fn")
-//     this.state = {open: this.props.open};
-//   }
-
-//   componentWillReceiveProps(nextProp) {
-//       this.setState({open : nextProp.open})
-//   }
-  //handleToggle = () => this.setState({open: !this.state.open});
-
-  //handleClose = () => this.setState({open: false});
+    const handleMenuClick = (title) => {
+      props.handleToggle()
+      props.handleNewsChange(title)
+    }
 
     return (
       <div>
-        {/* <RaisedButton
-          label="Open Drawer"
-          onClick={this.handleToggle}
-        /> */}
         <Drawer
           docked={false}
           width={300}
           open={props.open}
           onRequestChange={props.handleToggle}
         >
-          <MenuItem onClick={props.handleToggle}>Menu Item</MenuItem>
-          <MenuItem onClick={props.handleToggle}>Menu Item 2</MenuItem>
+          {details.map(item => {
+            return(
+              <MenuItem onClick={()=>handleMenuClick(item.name)}>{item.name}</MenuItem>
+            )
+          })}
+          
         </Drawer>
       </div>
     );
