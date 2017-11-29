@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {details} from '../../constants'
+import loadingImg from './Spinner.gif'
 import './styles.css'
 
 class News extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            news: [],
+            news: null,
             title: "All In One"
 
         }
@@ -35,7 +36,10 @@ class News extends Component {
         })
     }
 
-    render() {
+    render() {  console.log(!this.state.news)
+        if (!this.state.news)
+        return <img src={loadingImg} />
+
         const a = this.state.news.map((x, index) => {
             if (this.state.title === 'Medium' || this.state.title === 'Github Trending' || this.state.title === 'Lifehacker') {
                 return (
@@ -161,15 +165,15 @@ class News extends Component {
             }
             })
 
-        return (
-            <div className="outer-box">
-                <h1 className="title">{this.state.title}</h1>
-                <div className="inner-box">
-                    <ul>{a}</ul>
+            return (
+                <div className="outer-box">
+                    <h1 className="title">{this.state.title}</h1>
+                    <div className="inner-box">
+                        <ul>{a}</ul>
+                    </div>
                 </div>
-            </div>
-        )
-    }
+            )
+    } 
 }
 
 export default News;
