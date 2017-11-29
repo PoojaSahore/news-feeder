@@ -12,14 +12,6 @@ class App extends Component {
         }
     }
 
-    // handleClick = () => {
-    //     handleToggle = () => this.setState({open: !this.state.open});
-    //     display = () => {
-    //         return (
-
-    //         )
-    //     }
-    // }
     handleToggle = () => {
         this.setState({open: !this.state.open});
     }
@@ -35,7 +27,7 @@ class App extends Component {
                     title= {`News Feeder${this.state.title?": " + this.state.title:""}`}
                     iconClassNameRight="muidocs-icon-navigation-expand-more" 
                     onLeftIconButtonTouchTap={this.handleToggle}
-                />
+                    />
                 <News newsTitle={this.state.title} />
                 <SideBar open={this.state.open} handleToggle={this.handleToggle} handleNewsChange={this.handleNewsChange} />
             </div>
