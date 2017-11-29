@@ -10,7 +10,7 @@ export const details = [
     },
     {
         name: "Product Hunt",
-        url: "pd"
+        url: "ph"
     },
     {
         name: "Slashdot",
@@ -19,10 +19,14 @@ export const details = [
     {
         name: "Designer News",
         url: "dn"
+    },
+    {
+        name: "Lifehacker",
+        url: "lifehacker"
     }, 
     {
         name: "Github Trending",
-        url: "gt"
+        url: "github"
     },  
     {
         name: "Hacker News",

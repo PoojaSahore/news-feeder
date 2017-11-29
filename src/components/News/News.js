@@ -1,71 +1,52 @@
 import React, {Component} from 'react';
+import {details} from '../../constants'
 
 class News extends Component {
     constructor(props) {
         super(props)
         this.state = {
             news: [],
-            pooja: ""
+            title: ""
 
         }
     }
-        // componentWillReceiveProps() {
-        //     console.log(this.props.newsTitle)
-        //     console.log("ddjcvjsdvcjn")
-        //     this.setState({pooja: this.props.newsTitle})
-        // }
-    componentDidMount() {
-        console.log(this.props.newsTitle, "did")
-        fetch('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty').then(data => {
-            console.log(data)
-            return data.json();
-        }).then(data => {
-            data.splice(10)
-            data.map(x => {
-                fetch('https://hacker-news.firebaseio.com/v0/item/' + x + '.json?print=pretty').then(data => {
-                    return data.json()
-                }).then(data => {
-                    let news = {
-                        title: data.title,
-                        url: data.url,
-                        story: data.story
+
+    componentWillReceiveProps(newProps){
+        if (this.props.newsTitle != newProps.newsTitle)   
+            this.setState({title: newProps.newsTitle}, () => {
+                details.map(detail => { 
+                    if (detail.name === this.state.title) { 
+                        fetch(`http://reader.one/api/news/${detail.url}?limit=20`)
+                        .then(data => data.json())
+                        .then(data => { console.log(data)
+                            this.setState({news: data})
+                        })
                     }
-                    let oldnews = this.state.news;
-                    oldnews.push(news) //oldnews.push(data)
-                    this.setState({news: oldnews})
-
-                    // let title = this.state.title, url = this.state.url, story = this.state.story;
-                    // title.push(data.title); url.push(data.url); story.push(data.story)
-                    // this.setState({     title,     url ,     story })
                 })
-            })
+            })       
+    }
 
+    componentDidMount() {
+        fetch('http://reader.one/api/all/hn,reddit,ph,s')
+        .then(data => data.json())
+        .then(data => { console.log(data)
+            this.setState({news: data})
         })
-
     }
 
     render() {
-        const a = this
-            .state
-            .news
-            .map((x, index) => {
+        const a = this.state.news.map((x, index) => {
                 return (
                     <li key={index}>
-                        <div>
-                            {x.title}
-                        </div>
-                        <div>
-                            {x.story}
-                        </div>
                         <a href={x.url}>
-                            read more
+                            {x.title}
                         </a>
                     </li>
                 )
             })
         return (
             <div className="outer-box">
-                <h1>Hacker News{[this.props.newsTitle, this.state.pooja]}</h1>
+                <h1>{this.state.title}</h1>
                 <div className="inner-box">
                     <ul>{a}</ul>
                 </div>
