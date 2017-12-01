@@ -9,7 +9,7 @@ Built Using:
 ## Live Demo
 
 Check out the live demo
-[Here: ]()
+[Here](http://glacial-savannah-41325.herokuapp.com/)
 
 <hr>
 
@@ -42,7 +42,7 @@ the console.
 ### Build the app for production:
 
 ```sh
-npm build
+npm run build
 ```
 
 Builds the app for production to the `build` folder.<br> It correctly bundles
