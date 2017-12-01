@@ -12,7 +12,8 @@ body {
     margin-right: 35px;
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
     text-decoration: none;
     color: #000000;
 }

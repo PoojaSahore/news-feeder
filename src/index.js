@@ -6,11 +6,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
 
 const MaterialisedApp = () => (
-    <MuiThemeProvider>
-      <App />
-    </MuiThemeProvider>
-  );
-  
+  <MuiThemeProvider>
+    <App/>
+  </MuiThemeProvider>
+);
 
-ReactDOM.render(<MaterialisedApp />, document.getElementById('root'));
+ReactDOM.render(
+  <MaterialisedApp/>, document.getElementById('root'));
 registerServiceWorker();

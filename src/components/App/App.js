@@ -4,16 +4,18 @@ import SideBar from '../SideBar';
 import AppBar from 'material-ui/AppBar';
 
 class App extends Component {
-    constructor () {
+    constructor() {
         super()
         this.state = {
-            open : false,
+            open: false,
             title: ""
         }
     }
 
     handleToggle = () => {
-        this.setState({open: !this.state.open});
+        this.setState({
+            open: !this.state.open
+        });
     }
 
     handleNewsChange = (title) => {
@@ -24,12 +26,16 @@ class App extends Component {
         return (
             <div>
                 <AppBar
-                    title= {`News Feeder${this.state.title?": " + this.state.title:""}`}
-                    iconClassNameRight="muidocs-icon-navigation-expand-more" 
-                    onLeftIconButtonTouchTap={this.handleToggle}
-                    />
-                <News newsTitle={this.state.title} />
-                <SideBar open={this.state.open} handleToggle={this.handleToggle} handleNewsChange={this.handleNewsChange} />
+                    title={`News Feeder${this.state.title
+                    ? ": " + this.state.title
+                    : ""}`}
+                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                    onLeftIconButtonTouchTap={this.handleToggle}/>
+                <News newsTitle={this.state.title}/>
+                <SideBar
+                    open={this.state.open}
+                    handleToggle={this.handleToggle}
+                    handleNewsChange={this.handleNewsChange}/>
             </div>
         )
     }
